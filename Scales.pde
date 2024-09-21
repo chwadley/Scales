@@ -1,5 +1,5 @@
 int polyCount=20;
-PMatrix3D baseMat;
+PMatrix3D baseMat=new PMatrix3D();
 float[] fps=new float[60];
 
 void cylinder(float bottom, float h) {
@@ -105,7 +105,7 @@ void scale(float x, float y) {
   strokeWeight(2);
   pushMatrix();
   translate(0,0,50);
-  circle(0,0,100); //black circle (face);
+  ellipse(0,0,100,100); //black circle (face);
   popMatrix();
   noStroke();
   fill(255);
@@ -142,8 +142,10 @@ void setup() {
   size(800,800,P3D);
   //circle(-18,-10,10);
   //circle(18,-10,10);
-  baseMat = getMatrix(baseMat);
+  //baseMat = getMatrix(baseMat);
+  //PMatrix3D baseMat=new PMatrix3D();
   frameRate(60);
+  
 }
 
 int zoom=900;
@@ -164,8 +166,10 @@ void draw() {
     }
   }
   fps[frameCount%fps.length]=frameRate;
-  if (showText) {
-    this.setMatrix(baseMat);
+  if (false&&showText) {
+    translate(0,0,100);
+    //this.setMatrix(baseMat);
+    //this.setMatrix(baseMat);
     ambientLight(255, 255, 255);
     noStroke();
     fill(255);
@@ -190,7 +194,6 @@ void keyPressed() {
   }
   if (key=='s') {
     zoom-=100;
-    //System.out.println(zoom);
   }
   if (key=='a') {
     polyCount--;
